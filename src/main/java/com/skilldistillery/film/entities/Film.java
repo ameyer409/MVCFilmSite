@@ -3,8 +3,6 @@ package com.skilldistillery.film.entities;
 import java.util.List;
 import java.util.Objects;
 
-import com.skilldistillery.film.DAO.FilmDaoImpl;
-
 public class Film {
 
 		private int id;
@@ -15,12 +13,30 @@ public class Film {
 		private int length;
 		private String rating;
 		private List<Actor> actors;
+		private int rentalDuration;
+		private double rentalRate;
+		private double replacementCost;
+		private String language;
 
-		FilmDaoImpl fd = new FilmDaoImpl();
+		public Film(int id, String title, String description, int releaseYear, int languageId, int length,
+				String rating, List<Actor> actors, int rentalDuration, double rentalRate, double replacementCost) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.length = length;
+			this.rating = rating;
+			this.actors = actors;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentalRate;
+			this.replacementCost = replacementCost;
+		}
 		
 		public Film() {
 		}
-
+		
 		public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
 				List<Actor> actors) {
 			super();
@@ -33,7 +49,7 @@ public class Film {
 			this.rating = rating;
 			this.actors = actors;
 		}
-
+		
 		public Film(int id, String title, int releaseYear, String rating, String description, int languageId) {
 			super();
 			this.id = id;
@@ -52,6 +68,40 @@ public class Film {
 			this.rating = rating;
 			this.languageId = languageId;
 		}
+		
+		public String getLanguage() {
+			return language;
+		}
+
+		public void setLanguage(String language) {
+			this.language = language;
+		}
+
+		public int getRentalDuration() {
+			return rentalDuration;
+		}
+
+		public void setRentalDuration(int rentalDuration) {
+			this.rentalDuration = rentalDuration;
+		}
+
+		public double getRentalRate() {
+			return rentalRate;
+		}
+
+		public void setRentalRate(double rentalRate) {
+			this.rentalRate = rentalRate;
+		}
+
+		public double getReplacementCost() {
+			return replacementCost;
+		}
+
+		public void setReplacementCost(double replacementCost) {
+			this.replacementCost = replacementCost;
+		}
+
+		
 
 		public int getId() {
 			return id;
@@ -143,7 +193,7 @@ public class Film {
 			this.languageId = languageId;
 		}
 		
-		public String getLanguageString() {
-			return fd.getLanguageStringById(languageId);
-		}
+//		public String getLanguageString() {
+//			return fd.getLanguageStringById(languageId);
+//		}
 	}

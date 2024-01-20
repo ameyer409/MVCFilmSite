@@ -2,8 +2,8 @@ package com.skilldistillery.film.DAO;
 
 import java.util.List;
 
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
-import com.skilldistillery.filmquery.entities.Actor;
 
 public interface DatabaseAccessor {
 	public Film findFilmById(int filmId);

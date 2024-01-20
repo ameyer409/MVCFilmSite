@@ -11,24 +11,23 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
-import com.skilldistillery.filmquery.entities.Actor;
 
 @Repository
-public class FilmDaoImpl implements DatabaseAccessor{
+public class FilmDaoImpl implements DatabaseAccessor {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
 	private static final String USER = "student";
 	private static final String PWD = "student";
-	
+
 	@Override
 	public boolean updateFilm(Film film) {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USER, PWD);
 			conn.setAutoCommit(false);
-			String sql = "UPDATE film SET title = ?, description = ?, release_year = ?\n"
-					+ "WHERE id = ?;";
+			String sql = "UPDATE film SET title = ?, description = ?, release_year = ?\n" + "WHERE id = ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -36,26 +35,25 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			stmt.setInt(4, film.getId());
 			int updateCount = stmt.executeUpdate();
 			conn.commit();
-			
+
 			stmt.close();
 			conn.close();
-			
-		}
-		catch (SQLException sqle) {
+
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
-				try { conn.rollback(); }
-				catch (SQLException sqle2) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
 					System.err.println("Error trying to rollback");
 				}
 			}
 			return false;
 		}
-		
+
 		return true;
 	}
-	
-	
+
 	@Override
 	public boolean deleteFilm(Film film) {
 		Connection conn = null;
@@ -67,33 +65,32 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			stmt.setInt(1, film.getId());
 			int updateCount = stmt.executeUpdate();
 			conn.commit();
-			
+
 			stmt.close();
 			conn.close();
-			
-		}
-		catch (SQLException sqle) {
+
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
-				try { conn.rollback(); }
-				catch (SQLException sqle2) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
 					System.err.println("Error trying to rollback");
 				}
 			}
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
-	public Film createFilm (Film film) {
+	public Film createFilm(Film film) {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USER, PWD);
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO film (title, description, release_year, language_id) "
-					+ "VALUES (?, ?, ?, 1)";
+			String sql = "INSERT INTO film (title, description, release_year, language_id) " + "VALUES (?, ?, ?, 1)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -101,33 +98,32 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
-				if(keys.next()) {
+				if (keys.next()) {
 					film.setId(keys.getInt(1));
 				}
 				keys.close();
-			}
-			else {
+			} else {
 				film = null;
 			}
 			conn.commit();
 
 			stmt.close();
 			conn.close();
-		}
-		catch(SQLException sqle) {
+		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
-				try { conn.rollback(); }
-				catch (SQLException sqle2){
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
 					System.err.println("Error trying to rollback");
 				}
 			}
 			throw new RuntimeException("Error inswerting film " + film);
 		}
-		
+
 		return film;
 	}
-	
+
 	public String convertLanguage(int languageId) {
 		String lang = null;
 		try {
@@ -140,23 +136,21 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			if (filmResult.next()) {
 				lang = filmResult.getString("name");
 			}
-			
-			
+
 			filmResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In convertLanguage");
 			e.printStackTrace();
 		}
 		return lang;
 	}
-	
+
 	@Override
 	public Film findFilmByKeyword(String keyword) {
 		Film film = null;
-		
+
 		try {
 			Connection conn = DriverManager.getConnection(URL, USER, PWD);
 
@@ -178,32 +172,28 @@ public class FilmDaoImpl implements DatabaseAccessor{
 				film.setLength(filmResult.getInt("length"));
 				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
-				film.setSpecialFeatures(filmResult.getString("special_features"));
+//				film.setSpecialFeatures(filmResult.getString("special_features"));
 //				Not sure if there is a null risk here?
 				List<Actor> cast = findActorsByFilmId(film.getId());
-				film.setCast(cast);
+//				film.setCast(cast);
 			}
-			
-			
+
 			filmResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In findFilmByKeyword");
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return film;
 	}
-	
+
 	@Override
 	public List<Film> findFilmsByKeyword(String keyword) {
-		
+
 		List<Film> setOfFilms = new ArrayList<>();
-		
+
 		try {
 			Connection conn = DriverManager.getConnection(URL, USER, PWD);
 
@@ -225,34 +215,30 @@ public class FilmDaoImpl implements DatabaseAccessor{
 				film.setLength(filmResult.getInt("length"));
 				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
-				film.setSpecialFeatures(filmResult.getString("special_features"));
+//				film.setSpecialFeatures(filmResult.getString("special_features"));
 //				Not sure if there is a null risk here?
 				List<Actor> cast = findActorsByFilmId(film.getId());
-				film.setCast(cast);
+				film.setActors(cast);
 //				String language = convertLanguage(film.getLanguageId());
 				film.setLanguage(filmResult.getString("lang.name"));
 				setOfFilms.add(film);
 			}
-			
-			
+
 			filmResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In findFilmByKeyword");
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		return setOfFilms;
 	}
 
 	@Override
 	public Film findFilmById(int filmId) {
 		Film film = null;
-		
+
 		try {
 			Connection conn = DriverManager.getConnection(URL, USER, PWD);
 
@@ -274,19 +260,17 @@ public class FilmDaoImpl implements DatabaseAccessor{
 				film.setLength(filmResult.getInt("length"));
 				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
-				film.setSpecialFeatures(filmResult.getString("special_features"));
+//				film.setSpecialFeatures(filmResult.getString("special_features"));
 				List<Actor> cast = findActorsByFilmId(filmId);
-				film.setCast(cast);
+				film.setActors(cast);
 //				String language = convertLanguage(film.getLanguageId());
 				film.setLanguage(filmResult.getString("lang.name"));
 			}
-			
-			
+
 			filmResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In findFilmById");
 			e.printStackTrace();
 		}
@@ -314,18 +298,17 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			actorResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In findActorById");
 			e.printStackTrace();
 		}
 		// ...
 		return actor;
 	}
-	
+
 	public List<Actor> findActorsByFilmId(int filmId) {
 		List<Actor> actorList = new ArrayList<>();
-		//...
+		// ...
 		try {
 			Connection conn = DriverManager.getConnection(URL, USER, PWD);
 
@@ -344,13 +327,11 @@ public class FilmDaoImpl implements DatabaseAccessor{
 			actorResult.close();
 			stmt.close();
 			conn.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("In findActorsByFilmID");
 			e.printStackTrace();
 		}
 
-		
 		return actorList;
 	}
 
