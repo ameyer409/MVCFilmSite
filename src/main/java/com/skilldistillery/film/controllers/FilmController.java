@@ -66,14 +66,10 @@ public class FilmController {
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET)
 	public ModelAndView editFilmDetails(Film film) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(film);
-		System.out.println("********* Before Update");
 		boolean updated = filmDAO.updateFilm(film);
 		if (updated) {
-			System.out.println("********* Update True");
 			mv.addObject("film", film);
 		} else {
-			System.out.println("********* Update False");
 			film = null;
 			mv.addObject("film", film);
 		}

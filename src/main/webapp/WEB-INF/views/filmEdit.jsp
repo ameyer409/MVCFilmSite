@@ -12,24 +12,57 @@
 
 	<form action="editFilm.do" method="GET">
 		<input type="hidden" name="id" value="${film.id}"> 
-		<input type="hidden" name="languageId" value="${film.languageId}"> 
-		<input type="hidden" name="rentalDuration" value="${film.rentalDuration}">
-		<input type="hidden" name="rentalRate" value="${film.rentalRate}"> 
-		<input type="hidden" name="length" value="${film.length}">
-		<input type="hidden" name="replacementCost" value="${film.replacementCost}"> 
-		<input type="hidden" name="rating" value="${film.rating}">
 		
-
 		<label for="title">Title: </label> 
 		<input type="text" name="title" value="${film.title}" required> 
 		<br>
+		 
 		<label for="description">Description: </label> 
-		<input type="text" name="description" value="${film.description}" required> 
+		<input type="text"name="description" value="${film.description}" required> 
 		<br>
+		
 		<label for="releaseYear">Release Year: </label> 
-		<input type="text" name="releaseYear" value="${film.releaseYear}" required>
-		<br> 
-		<input type="submit"value="Update Film Data">
+		<input type="text"name="releaseYear" value="${film.releaseYear}" required> 
+		<br>
+		
+		<label for="languageId">Language: </label> 
+		<select name="languageId" required>
+			<option value="1">English</option>
+			<option value="2">Italian</option>
+			<option value="3">Japanese</option>
+			<option value="4">Mandarin</option>
+			<option value="5">French</option>
+			<option value="6">German</option>
+		</select> 
+		<br>
+		
+		<label for="rentalDuration">Rental Duration: </label> 
+		<input type="text" name="rentalDuration" value="${film.rentalDuration}" required>
+		<br>
+
+		<label for="rentalRate">Rental Rate: </label> 
+		<input type="text" name="rentalRate" value="${film.rentalRate}" required>
+		<br>
+
+		<label for="length">Film Length: </label> 
+		<input type="text" name="length" value="${film.length}" required> 
+		<br>
+
+		<label for="replacementCost">Replacement Cost: </label> 
+		<input type="text" name="replacementCost" value="${film.replacementCost}" required>
+		<br>
+
+		<label for="rating">Rating: </label> 
+		<select name="rating" value="${film.rating}" required>
+			<option value="G">G</option>
+			<option value="PG">PG</option>
+			<option value="PG-13">PG-13</option>
+			<option value="R">R</option>
+			<option value="NC-17">NC-17</option>
+		</select> 
+		<br>
+		
+		<input type="submit" value="Update Film Data">
 	</form>
 
 </body>

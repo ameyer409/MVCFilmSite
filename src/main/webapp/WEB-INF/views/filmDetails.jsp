@@ -21,7 +21,7 @@
         <p>Title: ${film.title}</p>
         <p>Description: ${film.description}</p>
         <p>Release year: ${film.releaseYear}</p>
-        <p>Language ID: ${film.languageId}</p>
+		<p>Language: ${film.language}</p>
         <p>Rental duration: ${film.rentalDuration}</p>
         <p>Rental rate: ${film.rentalRate}</p>
         <p>Length: ${film.length}</p>
