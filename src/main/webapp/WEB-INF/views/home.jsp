@@ -38,6 +38,14 @@
 				<p>Film Not Added</p>
 			</c:otherwise>
 		</c:choose>
+				
+		 <h2>Search Film by keyword</h2>
+
+    <form action="searchResults.do" method="get">
+        <label for="keyword">Enter Keyword:</label>
+        <input type="text" id="keyword" name="keyword" required>
+        <button type="submit">Search</button>
+    </form>
 			
 </body>
 </html>

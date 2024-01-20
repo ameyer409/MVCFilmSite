@@ -1,8 +1,9 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,4 +95,15 @@ public class FilmController {
 
 	}
 
+	@RequestMapping(path = "searchResults.do", method = RequestMethod.GET)
+	public ModelAndView searchByKeyword(@RequestParam("keyword") String keyword) {
+
+		ModelAndView mv = new ModelAndView();
+
+		List<Film> films = filmDAO.findFilmsByKeyword(keyword);
+		
+		mv.addObject("films", films);
+		mv.setViewName("searchResults");
+		return mv;
+	}
 }
