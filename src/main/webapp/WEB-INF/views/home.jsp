@@ -3,10 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Film Site</title>
 </head>
 <body>
-	Some Stuff
+    <h2>Search Film by ID</h2>
+    <form action="filmDetails.do" method="get">
+        <label for="filmId">Enter Film ID: </label>
+        <input type="text" id="filmId" name="id" required>
+        <input type="submit" value="Show Film Details">
+    </form>
 </body>
 </html>

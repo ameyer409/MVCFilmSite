@@ -17,9 +17,18 @@ import com.skilldistillery.film.entities.Film;
 @Repository
 public class FilmDaoImpl implements DatabaseAccessor {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
+	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
 	private static final String USER = "student";
 	private static final String PWD = "student";
+	
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public boolean updateFilm(Film film) {
