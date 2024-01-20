@@ -26,9 +26,11 @@ public class FilmDaoImpl implements DatabaseAccessor {
 		}
 	}
 
+
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
 	private static final String USER = "student";
 	private static final String PWD = "student";
+	
 
 	@Override
 	public boolean updateFilm(Film film) {

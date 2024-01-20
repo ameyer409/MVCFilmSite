@@ -5,11 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Film Database</title>
+<title>Film Site</title>
 </head>
 <body>
-	Some Stuff
-
+	<h2>Search Film by ID</h2>
+	<form action="filmDetails.do" method="get">
+		<label for="filmId">Enter Film ID: </label> <input type="text"
+			id="filmId" name="id" required> <input type="submit"
+			value="Show Film Details">
+	</form>
+	
+	<br>
+	<h2>Add Film</h2>
 	<form action="NewFilm.do" method="POST">
 		<label for="title">Title:</label> <input type="text" name="title">
 		<br> <label for="description">Description:</label> <input
@@ -18,18 +25,5 @@
 			name="releaseYear"> <br> <input type="submit"
 			value="Add Film">
 	</form>
-
-	<c:choose>
-		<c:when test="${not empty film}">
-			<ul>
-				<li>${film.title}</li>
-				<li>${film.description}</li>
-				<li>${film.releaseYear}</li>
-			</ul>
-		</c:when>
-		<c:otherwise>
-			<p>No film found</p>
-		</c:otherwise>
-	</c:choose>
 </body>
 </html>
