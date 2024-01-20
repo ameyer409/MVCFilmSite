@@ -18,56 +18,63 @@ public class Film {
 		private double replacementCost;
 		private String language;
 
-		public Film(int id, String title, String description, int releaseYear, int languageId, int length,
-				String rating, List<Actor> actors, int rentalDuration, double rentalRate, double replacementCost) {
+		public Film(String title, String description, int releaseYear) {
 			super();
-			this.id = id;
 			this.title = title;
 			this.description = description;
 			this.releaseYear = releaseYear;
-			this.languageId = languageId;
-			this.length = length;
-			this.rating = rating;
-			this.actors = actors;
-			this.rentalDuration = rentalDuration;
-			this.rentalRate = rentalRate;
-			this.replacementCost = replacementCost;
 		}
+
+//		public Film(int id, String title, String description, int releaseYear, int languageId, int length,
+//				String rating, List<Actor> actors, int rentalDuration, double rentalRate, double replacementCost) {
+//			super();
+//			this.id = id;
+//			this.title = title;
+//			this.description = description;
+//			this.releaseYear = releaseYear;
+//			this.languageId = languageId;
+//			this.length = length;
+//			this.rating = rating;
+//			this.actors = actors;
+//			this.rentalDuration = rentalDuration;
+//			this.rentalRate = rentalRate;
+//			this.replacementCost = replacementCost;
+//		}
 		
 		public Film() {
 		}
 		
-		public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
-				List<Actor> actors) {
-			super();
-			this.id = id;
-			this.title = title;
-			this.description = description;
-			this.releaseYear = releaseYear;
-			this.languageId = languageId;
-			this.length = length;
-			this.rating = rating;
-			this.actors = actors;
-		}
-		
-		public Film(int id, String title, int releaseYear, String rating, String description, int languageId) {
-			super();
-			this.id = id;
-			this.title = title;
-			this.releaseYear = releaseYear;
-			this.rating = rating;
-			this.description = description;
-			this.languageId = languageId;
-		}
-		
-		public Film(String title, String description, int releaseYear, String rating, int languageId) {
-			super();
-			this.title = title;
-			this.description = description;
-			this.releaseYear = releaseYear;
-			this.rating = rating;
-			this.languageId = languageId;
-		}
+//		public Film(int id, String title, String description, int releaseYear, int languageId, int length, String rating,
+//				List<Actor> actors) {
+//			super();
+//			this.id = id;
+//			this.title = title;
+//			this.description = description;
+//			this.releaseYear = releaseYear;
+//			this.languageId = languageId;
+//			this.length = length;
+//			this.rating = rating;
+//			this.actors = actors;
+//		}
+//		
+//		public Film(int id, String title, int releaseYear, String rating, String description, int languageId) {
+//			super();
+//			this.id = id;
+//			this.title = title;
+//			this.releaseYear = releaseYear;
+//			this.rating = rating;
+//			this.description = description;
+//			this.languageId = languageId;
+//		}
+//		
+//		public Film(String title, String description, int releaseYear, String rating, int languageId) {
+//			super();
+//			this.title = title;
+//			this.description = description;
+//			this.releaseYear = releaseYear;
+//			this.rating = rating;
+//			this.languageId = languageId;
+//		}
 		
 		public String getLanguage() {
 			return language;

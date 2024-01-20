@@ -17,7 +17,16 @@ import com.skilldistillery.film.entities.Film;
 @Repository
 public class FilmDaoImpl implements DatabaseAccessor {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=US/Mountain";
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
 	private static final String USER = "student";
 	private static final String PWD = "student";
 
@@ -92,21 +101,24 @@ public class FilmDaoImpl implements DatabaseAccessor {
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO film (title, description, release_year, language_id) " + "VALUES (?, ?, ?, 1)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
 			stmt.setInt(3, film.getReleaseYear());
+
 			int updateCount = stmt.executeUpdate();
+			conn.commit();
+			ResultSet keys = stmt.getGeneratedKeys();
 			if (updateCount == 1) {
-				ResultSet keys = stmt.getGeneratedKeys();
 				if (keys.next()) {
+					System.out.println("******************* new film id: " + keys.getInt(1));
 					film.setId(keys.getInt(1));
 				}
-				keys.close();
 			} else {
 				film = null;
 			}
-			conn.commit();
 
+			keys.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException sqle) {
@@ -118,7 +130,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error inswerting film " + film);
+			throw new RuntimeException("Error inserting film " + film);
 		}
 
 		return film;
