@@ -28,10 +28,20 @@
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
 
+			<a href="deleteFilm.do?id=${film.id}">Delete film by ID</a>
+		<br>
 		</c:when>
+
+
+
 		<c:otherwise>
 			<p>No film found for this film ID. Enter a valid ID.</p>
 		</c:otherwise>
 	</c:choose>
+
+	<a href="/MVCFilmSite">Return to Home Page</a>
+
+
+
 </body>
 </html>
