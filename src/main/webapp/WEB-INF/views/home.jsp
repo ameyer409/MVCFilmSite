@@ -14,7 +14,7 @@
 			id="filmId" name="id" required> <input type="submit"
 			value="Show Film Details">
 	</form>
-	
+
 	<br>
 	<h2>Add Film</h2>
 	<form action="NewFilm.do" method="POST">
@@ -25,5 +25,13 @@
 			name="releaseYear"> <br> <input type="submit"
 			value="Add Film">
 	</form>
+		<c:choose>
+			<c:when test="${not empty film}">
+				<p>Film Added!</p>
+			</c:when>
+			<c:otherwise>
+				<p>Film Not Added</p>
+			</c:otherwise>
+		</c:choose>
 </body>
 </html>
