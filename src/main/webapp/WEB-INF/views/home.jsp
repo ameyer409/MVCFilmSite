@@ -30,13 +30,14 @@
 		<br> 
 		<input type="submit" value="Add Film">
 	</form>
-	<c:choose>
-		<c:when test="${not empty film}">
-			<p>Film Added!</p>
-		</c:when>
-		<c:otherwise>
-			<p>Film Not Added</p>
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${not empty film}">
+				<p>Film Added!</p>
+			</c:when>
+			<c:otherwise>
+				<p>Film Not Added</p>
+			</c:otherwise>
+		</c:choose>
+			
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.skilldistillery.film.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,12 +39,11 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "/filmDetails.do", method = RequestMethod.GET)
+	@RequestMapping(path = "filmDetails.do", method = RequestMethod.GET)
 	public ModelAndView showFilmDetails(@RequestParam("id") int filmId) {
 		ModelAndView mv = new ModelAndView();
 
 		Film film = filmDAO.findFilmById(filmId);
-//		System.out.println(film);
 		if (film != null) {
 			mv.addObject("film", film);
 			mv.setViewName("filmDetails");
@@ -78,6 +78,20 @@ public class FilmController {
 		}
 		mv.setViewName("filmEditComplete");
 		return mv;
+	}
+
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.GET)
+	public ModelAndView deleteFilm(@RequestParam("id") int filmId) {
+
+		Film filmToDelete = filmDAO.findFilmById(filmId);
+		Boolean deleteMessage = filmDAO.deleteFilm(filmToDelete);
+
+		ModelAndView mv = new ModelAndView();
+
+		mv.addObject("errorMessage", deleteMessage);
+		mv.setViewName("error");
+		return mv;
+
 	}
 
 }
