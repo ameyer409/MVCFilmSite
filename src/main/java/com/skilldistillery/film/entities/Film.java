@@ -142,7 +142,7 @@ public class Film {
 			this.releaseYear = releaseYear;
 		}
 
-		public double getLength() {
+		public int getLength() {
 			return length;
 		}
 
@@ -187,9 +187,10 @@ public class Film {
 
 		@Override
 		public String toString() {
-			return "Film id = " + id + ", title = " + title + ", description = " + description + ", release year = "
-					+ releaseYear + ", languageId = " + languageId + ", length = " + length + " minutes, rating = " + rating
-					+ "\n Actors = " + actors;
+			return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear="
+					+ releaseYear + ", languageId=" + languageId + ", length=" + length + ", rating=" + rating
+					+ ", actors=" + actors + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+					+ ", replacementCost=" + replacementCost + ", language=" + language + "]";
 		}
 
 		public int getLanguageId() {

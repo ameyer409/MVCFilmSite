@@ -10,7 +10,8 @@
 <body>
 	<h2>Search Film by ID</h2>
 	<form action="filmDetails.do" method="get">
-		<label for="filmId">Enter Film ID: </label> <input type="text"
+		<label for="filmId">Enter Film ID: </label> 
+		<input type="text"
 			id="filmId" name="id" required> <input type="submit"
 			value="Show Film Details">
 	</form>
@@ -18,20 +19,24 @@
 	<br>
 	<h2>Add Film</h2>
 	<form action="NewFilm.do" method="POST">
-		<label for="title">Title:</label> <input type="text" name="title">
-		<br> <label for="description">Description:</label> <input
-			type="text" name="description"> <br> <label
-			for="releaseYear">Release Year:</label> <input type="text"
-			name="releaseYear"> <br> <input type="submit"
-			value="Add Film">
+		<label for="title">Title:</label> 
+		<input type="text" name="title">
+		<br> 
+		<label for="description">Description:</label> 
+		<input type="text" name="description"> 
+		<br> 
+		<label for="releaseYear">Release Year:</label> 
+		<input type="text" name="releaseYear"> 
+		<br> 
+		<input type="submit" value="Add Film">
 	</form>
-		<c:choose>
-			<c:when test="${not empty film}">
-				<p>Film Added!</p>
-			</c:when>
-			<c:otherwise>
-				<p>Film Not Added</p>
-			</c:otherwise>
-		</c:choose>
+	<c:choose>
+		<c:when test="${not empty film}">
+			<p>Film Added!</p>
+		</c:when>
+		<c:otherwise>
+			<p>Film Not Added</p>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

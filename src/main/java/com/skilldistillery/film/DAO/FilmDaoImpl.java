@@ -19,7 +19,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,6 +45,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 			stmt.setInt(3, film.getReleaseYear());
 			stmt.setInt(4, film.getId());
 			int updateCount = stmt.executeUpdate();
+			System.out.println(updateCount);
 			conn.commit();
 
 			stmt.close();

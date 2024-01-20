@@ -21,7 +21,7 @@ public class FilmController {
 	public String home() {
 		return "home";
 	}
-	
+
 	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
@@ -30,7 +30,7 @@ public class FilmController {
 		mv.setViewName("redirect:filmAdded.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "filmAdded.do", method = RequestMethod.GET)
 	public ModelAndView addStateRedirect(Film film) {
 		ModelAndView mv = new ModelAndView();
@@ -43,11 +43,40 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 
 		Film film = filmDAO.findFilmById(filmId);
-		System.out.println(film);
+//		System.out.println(film);
 		if (film != null) {
 			mv.addObject("film", film);
 			mv.setViewName("filmDetails");
-		} 
+		}
+		return mv;
+	}
+
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.GET)
+	public ModelAndView updateFilmDetails(@RequestParam("filmId") int filmId) {
+		ModelAndView mv = new ModelAndView();
+
+		Film film = filmDAO.findFilmById(filmId);
+		System.out.println(film);
+		mv.addObject("film", film);
+		mv.setViewName("filmEdit");
+		return mv;
+	}
+
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET)
+	public ModelAndView editFilmDetails(Film film) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(film);
+		System.out.println("********* Before Update");
+		boolean updated = filmDAO.updateFilm(film);
+		if (updated) {
+			System.out.println("********* Update True");
+			mv.addObject("film", film);
+		} else {
+			System.out.println("********* Update False");
+			film = null;
+			mv.addObject("film", film);
+		}
+		mv.setViewName("filmEditComplete");
 		return mv;
 	}
 

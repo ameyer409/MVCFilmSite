@@ -28,6 +28,8 @@
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
 
+		<a href="updateFilm.do?filmId=${film.id}">Update Film Data</a>
+		
 		</c:when>
 		<c:otherwise>
 			<p>No film found for this film ID. Enter a valid ID.</p>
