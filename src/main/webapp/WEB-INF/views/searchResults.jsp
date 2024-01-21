@@ -27,13 +27,6 @@
         <p>Length: ${film.length}</p>
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
-					           				
-			<a href="updateFilm.do?filmId=${film.id}">Update Film</a>
-			<a href="deleteFilm.do?id=${film.id}">Delete film</a>
-						                    
-            </c:forEach>
-
-
         <h3>Actors:</h3>
         <c:forEach var="actor" items="${film.actors}">
             <p>${actor.firstName} ${actor.lastName}</p>
@@ -43,6 +36,13 @@
         <c:forEach var="category" items="${categories}">
             <p>${category.name}</p>
         </c:forEach>
+					           				
+			<a href="updateFilm.do?filmId=${film.id}">Update Film</a>
+			<a href="deleteFilm.do?id=${film.id}">Delete film</a>
+						                    
+            </c:forEach>
+
+
     </c:if>
 	         
 	<c:if test="${empty films}">

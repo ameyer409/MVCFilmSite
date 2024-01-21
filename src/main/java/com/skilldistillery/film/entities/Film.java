@@ -17,6 +17,15 @@ public class Film {
 		private double rentalRate;
 		private double replacementCost;
 		private String language;
+		private List<Category> categories;
+
+		public List<Category> getCategories() {
+			return categories;
+		}
+
+		public void setCategories(List<Category> categories) {
+			this.categories = categories;
+		}
 
 		public Film(String title, String description, int releaseYear) {
 			super();
@@ -190,7 +199,8 @@ public class Film {
 			return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear="
 					+ releaseYear + ", languageId=" + languageId + ", length=" + length + ", rating=" + rating
 					+ ", actors=" + actors + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-					+ ", replacementCost=" + replacementCost + ", language=" + language + "]";
+					+ ", replacementCost=" + replacementCost + ", language=" + language + ", categories=" + categories
+					+ "]";
 		}
 
 		public int getLanguageId() {

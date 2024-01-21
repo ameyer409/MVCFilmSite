@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.film.entities.Actor;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 
 @Repository
@@ -242,6 +243,8 @@ public class FilmDaoImpl implements DatabaseAccessor {
 //				Not sure if there is a null risk here?
 				List<Actor> cast = findActorsByFilmId(film.getId());
 				film.setActors(cast);
+				List<Category> categories = findCategoriesByFilmId(film.getId());
+				film.setCategories(categories);
 //				String language = convertLanguage(film.getLanguageId());
 				film.setLanguage(filmResult.getString("lang.name"));
 				setOfFilms.add(film);
@@ -287,6 +290,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 				List<Actor> cast = findActorsByFilmId(filmId);
 				film.setActors(cast);
 				List<Category> categories = findCategoriesByFilmId(filmId);
+				film.setCategories(categories);
 //				String language = convertLanguage(film.getLanguageId());
 				film.setLanguage(filmResult.getString("lang.name"));
 			}
@@ -371,9 +375,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 			stmt.setInt(1, filmId);
 			ResultSet result = stmt.executeQuery();
 			while (result.next()) {
-				Category cat = new Category();
-				cat.setId(result.getInt("id"));
-				cat.setName(result.getString("name"));
+				Category cat = new Category(result.getInt("id"), result.getString("name"));
 				categories.add(cat);
 			}
 			result.close();
