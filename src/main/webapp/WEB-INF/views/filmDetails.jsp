@@ -27,6 +27,12 @@
         <p>Length: ${film.length}</p>
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
+			
+			<%-- <h3>Actors:</h3>
+			<c:forEach var="actor" items="${film.actors}">
+			
+			<p>${actor.firstName} ${actor.lastName}</p> --%>
+			
 			<br>
 			<a href="updateFilm.do?filmId=${film.id}">Update Film Data</a>
 			<br>

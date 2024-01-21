@@ -28,8 +28,7 @@
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
 					           				
-				<a href="updateFilm.do?filmId=${film.id}">Update Film</a>
-			<br>
+			<a href="updateFilm.do?filmId=${film.id}">Update Film</a>
 			<a href="deleteFilm.do?id=${film.id}">Delete film</a>
 						                    
             </c:forEach>
