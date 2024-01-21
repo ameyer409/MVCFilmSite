@@ -33,7 +33,7 @@
         </c:forEach>
         
         <h3>Categories:</h3>
-        <c:forEach var="category" items="${categories}">
+        <c:forEach var="category" items="${film.categories}">
             <p>${category.name}</p>
         </c:forEach>
 					           				
