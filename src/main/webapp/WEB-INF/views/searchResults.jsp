@@ -10,7 +10,7 @@
 </head>
 <body>
 	    
-	<h2>Search Results</h2>
+	<h2>Film Search Results</h2>
 
 	    
 	<c:if test="${not empty films}">
