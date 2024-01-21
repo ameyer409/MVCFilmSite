@@ -23,6 +23,13 @@ public class FilmController {
 	public String home() {
 		return "home";
 	}
+	
+	@RequestMapping(path = "addFilm.do")
+	public ModelAndView navigateToAddFilmPage() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("addFilm");
+		return mv;
+	}
 
 	@RequestMapping(path = "NewFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film film, RedirectAttributes redir) {
@@ -36,7 +43,7 @@ public class FilmController {
 	@RequestMapping(path = "filmAdded.do", method = RequestMethod.GET)
 	public ModelAndView addStateRedirect(Film film) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
+		mv.setViewName("filmAdded");
 		return mv;
 	}
 
