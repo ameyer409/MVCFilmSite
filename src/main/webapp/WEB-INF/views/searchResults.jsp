@@ -16,8 +16,8 @@
 	<c:if test="${not empty films}">
      
 			<c:forEach var="film" items="${films}">
-		
-		<p>ID: ${film.id}</p>
+
+			<p>ID: ${film.id}</p>
         <p>Title: ${film.title}</p>
         <p>Description: ${film.description}</p>
         <p>Release year: ${film.releaseYear}</p>
@@ -27,15 +27,15 @@
         <p>Length: ${film.length}</p>
         <p>Replacement cost: ${film.replacementCost}</p>
         <p>Rating: ${film.rating}</p>
-        <h3>Actors:</h3>
-        <c:forEach var="actor" items="${film.actors}">
-            <p>${actor.firstName} ${actor.lastName}</p>
-        </c:forEach>
-        
-        <h3>Categories:</h3>
-        <c:forEach var="category" items="${film.categories}">
-            <p>${category.name}</p>
-        </c:forEach>
+			<h3>Actors:</h3>
+			<c:forEach var="actor" items="${film.actors}">
+				<p>${actor.firstName}${actor.lastName}</p>
+			</c:forEach>
+
+			<h3>Categories:</h3>
+			<c:forEach var="category" items="${film.categories}">
+				<p>${category.name}</p>
+			</c:forEach>
 					           				
 			<a href="updateFilm.do?filmId=${film.id}">Update Film</a>
 			<a href="deleteFilm.do?id=${film.id}">Delete film</a>
@@ -46,7 +46,7 @@
     </c:if>
 	         
 	<c:if test="${empty films}">
-        <p> No films found for the keyword</p>
+        <p>No films found for the keyword</p>
     </c:if>
 	<br>
 	<a href="/MVCFilmSite">Return to Home Page</a>
