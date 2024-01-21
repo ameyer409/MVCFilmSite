@@ -286,6 +286,7 @@ public class FilmDaoImpl implements DatabaseAccessor {
 //				film.setSpecialFeatures(filmResult.getString("special_features"));
 				List<Actor> cast = findActorsByFilmId(filmId);
 				film.setActors(cast);
+				List<Category> categories = findCategoriesByFilmId(filmId);
 //				String language = convertLanguage(film.getLanguageId());
 				film.setLanguage(filmResult.getString("lang.name"));
 			}
@@ -356,6 +357,34 @@ public class FilmDaoImpl implements DatabaseAccessor {
 		}
 
 		return actorList;
+	}
+	
+	public List<Category> findCategoriesByFilmId(int filmId) {
+		List<Category> categories = new ArrayList<>();
+		// ...
+		try {
+			Connection conn = DriverManager.getConnection(URL, USER, PWD);
+
+			String sql = "SELECT c.id, c.name FROM category c JOIN film_category fc "
+					+ "ON c.id = fc.category_id WHERE fc.film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet result = stmt.executeQuery();
+			while (result.next()) {
+				Category cat = new Category();
+				cat.setId(result.getInt("id"));
+				cat.setName(result.getString("name"));
+				categories.add(cat);
+			}
+			result.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println("In findActorsByFilmID");
+			e.printStackTrace();
+		}
+
+		return categories;
 	}
 
 }
