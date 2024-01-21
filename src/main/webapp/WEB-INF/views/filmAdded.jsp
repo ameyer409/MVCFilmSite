@@ -13,12 +13,12 @@
 	<c:choose>
 		<c:when test="${not empty film}">
 		<p>Film Added!</p>
-			<ul>
-				<li>${film.id}
-				<li>${film.title}</li>
-				<li>${film.description}</li>
-				<li>${film.releaseYear}</li>
-			</ul>
+				Id: ${film.id}
+				<br>
+				Title: ${film.title}
+				<br>
+				Description: ${film.description}
+				<br>
 		</c:when>
 		<c:otherwise>
 			<p>Film Not Added</p>

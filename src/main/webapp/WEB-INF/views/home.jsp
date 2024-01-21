@@ -17,27 +17,10 @@
 	</form>
 
 	<br>
+	
 	<h2>Add Film</h2>
-	<form action="NewFilm.do" method="POST">
-		<label for="title">Title:</label> 
-		<input type="text" name="title">
-		<br> 
-		<label for="description">Description:</label> 
-		<input type="text" name="description"> 
-		<br> 
-		<label for="releaseYear">Release Year:</label> 
-		<input type="text" name="releaseYear"> 
-		<br> 
-		<input type="submit" value="Add Film">
-	</form>
-		<c:choose>
-			<c:when test="${not empty film}">
-				<p>Film Added!</p>
-			</c:when>
-			<c:otherwise>
-				<p>Film Not Added</p>
-			</c:otherwise>
-		</c:choose>
+	<a href="addFilm.do">click here!</a>
+	
 				
 		 <h2>Search Film by keyword</h2>
 
